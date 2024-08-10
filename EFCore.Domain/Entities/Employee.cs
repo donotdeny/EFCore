@@ -12,5 +12,7 @@ namespace EFCore.Domain.Entities
         public string FullName { get; set; }
         public string Address { get; set; }
         public decimal Salary { get; set; }
+        public Guid? CurrentDepartmentId { get; set; }
+        public Department? Department { get; set; }
     }
 }

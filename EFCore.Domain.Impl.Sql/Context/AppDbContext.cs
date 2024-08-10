@@ -6,6 +6,7 @@ namespace EFCore.Domain.Impl.Sql.Context
     public class AppDbContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Department> Departments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,6 +21,11 @@ namespace EFCore.Domain.Impl.Sql.Context
             {
                 property.SetColumnType("decimal(18,2)");
             }
+            //Property Configurations
+            builder.Entity<Employee>()
+             .HasOne(s => s.Department)
+             .WithMany(g => g.Employees)
+             .HasForeignKey(s => s.CurrentDepartmentId);
         }
     }
 }
