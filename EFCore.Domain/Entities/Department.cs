@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace EFCore.Domain.Entities
 {
-    public class Department
+    public class Department : BaseEntity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public ICollection<Employee> Employees { get; set; }

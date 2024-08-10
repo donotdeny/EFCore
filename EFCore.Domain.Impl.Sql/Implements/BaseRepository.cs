@@ -41,11 +41,6 @@ namespace EFCore.Domain.Impl.Sql.Implements
             _appDbContext.Set<TEntity>().RemoveRange(entities);
         }
 
-        public void DeleteMany(IEnumerable<TEntity> entities)
-        {
-            _appDbContext.Set<TEntity>().RemoveRange(entities);
-        }
-
         public IQueryable<TEntity> GetAll(FindOptions? findOptions)
         {
             return this.Get(findOptions);
