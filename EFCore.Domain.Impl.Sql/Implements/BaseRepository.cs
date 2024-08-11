@@ -9,7 +9,7 @@ namespace EFCore.Domain.Impl.Sql.Implements
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        private readonly AppDbContext _appDbContext;
+        protected readonly AppDbContext _appDbContext;
         public BaseRepository(IServiceProvider serviceProvider)
         {
             _appDbContext = serviceProvider.GetRequiredService<AppDbContext>();

@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EFCore.API.Controllers
 {
-    public class EmployeeController : BaseController<Employee>
+    public class EmployeeController : BaseController<IEmployeeRepository, Employee>
     {
-        public EmployeeController(IServiceProvider serviceProvider, IEmployeeRepository employeeRepository) : base(serviceProvider, employeeRepository)
+        public EmployeeController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
     }

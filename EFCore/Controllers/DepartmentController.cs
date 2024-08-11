@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EFCore.API.Controllers
 {
-    public class DepartmentController : BaseController<Department>
+    public class DepartmentController : BaseController<IDepartmentRepository, Department>
     {
-        public DepartmentController(IServiceProvider serviceProvider, IBaseRepository<Department> repo) : base(serviceProvider, repo)
+        public DepartmentController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
     }

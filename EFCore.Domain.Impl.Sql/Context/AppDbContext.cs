@@ -7,6 +7,7 @@ namespace EFCore.Domain.Impl.Sql.Context
     {
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Salary> Salary { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,9 +24,13 @@ namespace EFCore.Domain.Impl.Sql.Context
             }
             //Property Configurations
             builder.Entity<Employee>()
-             .HasOne(s => s.Department)
-             .WithMany(g => g.Employees)
-             .HasForeignKey(s => s.CurrentDepartmentId);
+                .HasOne(s => s.Department)
+                .WithMany(g => g.Employees)
+                .HasForeignKey(s => s.CurrentDepartmentId);
+            builder.Entity<Salary>()
+                .HasOne(s => s.Employee)
+                .WithMany(g => g.Salaries)
+                .HasForeignKey(s => s.CurrentEmployeeId);
         }
     }
 }

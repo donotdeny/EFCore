@@ -6,16 +6,18 @@ namespace EFCore.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public abstract class BaseController<TEntity> : ControllerBase where TEntity : BaseEntity
+    public abstract class BaseController<TRepo, TEntity> : ControllerBase 
+        where TEntity : BaseEntity
+        where TRepo : IBaseRepository<TEntity>
     {
         protected readonly IServiceProvider _serviceProvider;
-        protected readonly IBaseRepository<TEntity> _repo;
+        protected readonly TRepo _repo;
         protected const string _messageResponse = "An error occurred while processing your request.";
 
-        protected BaseController(IServiceProvider serviceProvider, IBaseRepository<TEntity> repo)
+        protected BaseController(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
-            _repo = repo;
+            _repo = serviceProvider.GetRequiredService<TRepo>();
         }
 
         [HttpGet]
